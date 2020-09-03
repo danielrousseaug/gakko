@@ -33,6 +33,7 @@ Select from 3 current features: Notes, Schedules and Calendar
 Notes functions as a simplistic todo list
 
 ![Schedule](https://i.imgur.com/0EkHUQH.gif)
+
 Schedule works as a way to organize your classes and their respective zoom links. To edit any of the classes name or link, simply press the edit button, modify them, and click the save changes button.
 
 ## Contributing
