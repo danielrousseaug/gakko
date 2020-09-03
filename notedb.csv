@@ -1,0 +1,3 @@
+"<li onclick=""delnote()"" class=""row"" id=""item"">test</li>"
+"<li onclick=""delnote()"" class=""row"" id=""item"">Wash my car</li>"
+"<li onclick=""delnote()"" class=""row"" id=""item"">Give food to malcolm</li>"

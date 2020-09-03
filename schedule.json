@@ -1,0 +1,105 @@
+[{
+    "monday": {
+        "block1": {
+            "period": 1,
+            "time": "9:05-10:35"
+        },
+        "block2": {
+            "period": 8,
+            "time": "10:40-11:10"
+        },
+        "block3": {
+            "period": 2,
+            "time": "11:15-12:45"
+        },
+        "block4": {
+            "period": 9,
+            "time": "12:45-1:25"
+        },
+        "block5": {
+            "period": 3,
+            "time": "1:30-3:00"
+        }
+    },
+    "tuesday": {
+        "block1": {
+            "period": 4,
+            "time": "9:05-10:35"
+        },
+        "block2": {
+            "period": 8,
+            "time": "10:40-11:10"
+        },
+        "block3": {
+            "period": 5,
+            "time": "11:15-12:45"
+        },
+        "block4": {
+            "period": 9,
+            "time": "12:45-1:25"
+        },
+        "block5": {
+            "period": 6,
+            "time": "1:30-3:00"
+        }
+    },
+    "wednesday": {
+        "block1": {
+            "period": 7,
+            "time": "9:05-10:35"
+        },
+        "block2": {
+            "period": 8,
+            "time": "10:40-11:10"
+        },
+        "block3": {
+            "period": 1,
+            "time": "11:15-12:45"
+        },
+        "block4": {
+            "period": 9,
+            "time": "12:45-1:25"
+        },
+        "block5": {
+            "period": 2,
+            "time": "1:30-3:00"
+        }
+    },
+    "thursday": {
+        "block1": {
+            "period": 3,
+            "time": "9:05-10:35"
+        },
+        "block2": {
+            "period": 8,
+            "time": "10:40-11:10"
+        },
+        "block3": {
+            "period": 4,
+            "time": "11:15-12:45"
+        },
+        "block4": {
+            "period": 9,
+            "time": "12:45-1:25"
+        },
+        "block5": {
+            "period": 5,
+            "time": "1:30-3:00"
+        },
+        "friday": {
+            "block1": {
+                "period": 6,
+                "time": "8:45-10:15"
+            },
+            "block2": {
+                "period": 9,
+                "time": "10:15-10:30"
+            },
+            "block3": {
+                "period": 7,
+                "time": "10:35-12:05"
+            }
+        }
+    }
+
+}]
