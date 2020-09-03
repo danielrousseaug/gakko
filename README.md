@@ -26,13 +26,13 @@ Then either use
 ```npm start``` to run from a commandline, or package using any nodejs app builder.
 ## Usage
 
-![Menu](https://i.imgur.com/3BM8qWF.png | width=100)
+![Menu](https://i.imgur.com/3BM8qWF.png)
 Select from 3 current features: Notes, Schedules and Calendar
 
-![Notes](https://i.imgur.com/AzkFzvZ.png | width=100)
+![Notes](https://i.imgur.com/AzkFzvZ.png)
 Notes functions as a simplistic todo list
 
-![Schedule](https://i.imgur.com/0EkHUQH.gif | width=100)
+![Schedule](https://i.imgur.com/0EkHUQH.gif)
 Schedule works as a way to organize your classes and their respective zoom links. To edit any of the classes name or link, simply press the edit button, modify them, and click the save changes button.
 
 ## Contributing
