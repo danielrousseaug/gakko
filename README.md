@@ -26,7 +26,7 @@ Then either use
 ```npm start``` to run from a commandline, or package using any nodejs app builder.
 ## Usage
 
-![Menu](https://i.imgur.com/3BM8qWF.png)
+![Menu](https://i.imgur.com/3BM8qWF.png =250x)
 Select from 3 current features: Notes, Schedules and Calendar
 
 ![Notes](https://i.imgur.com/AzkFzvZ.png)
