@@ -95,6 +95,7 @@ function formsubmit() {
     schedule[6][0] = document.getElementById("p7name").value;
     schedule[6][1] = document.getElementById("p7link").value;
 
+    schedule[7][0] = "Access";
     schedule[7][1] = document.getElementById("accesslink").value;
 
     // write form into file
