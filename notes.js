@@ -3,6 +3,8 @@ const {
 } = require("util");
 var csvsync = require('csvsync');
 const fs = require("fs");
+const path = require('path');
+
 
 // splice func used to replace i with id later
 if (!String.prototype.splice) {
@@ -19,7 +21,7 @@ function addnote(text) {
     }
 
     // process csv file data
-    var rawdata = fs.readFileSync('notedb.csv');
+    let rawdata = fs.readFileSync(path.join(__dirname, 'notedb.csv'));
     var allnotes = csvsync.parse(rawdata);
 
     // format note for file and add it
@@ -30,7 +32,7 @@ function addnote(text) {
 
     // // write data back to file
     var csv = csvsync.stringify(allnotes);
-    fs.writeFileSync('notedb.csv', csv);
+    fs.writeFileSync(path.join(__dirname, 'notedb.csv'), csv);
 
     // refresh notes on page
     shownotes();
@@ -39,7 +41,7 @@ function addnote(text) {
 // takes in index of a note and removes it from db
 function delnote(id) {
     // process csv file data
-    var rawdata = fs.readFileSync('notedb.csv');
+    let rawdata = fs.readFileSync(path.join(__dirname, 'notedb.csv'));
     var allnotes = csvsync.parse(rawdata);
 
     // remove idth element
@@ -47,7 +49,7 @@ function delnote(id) {
 
     // write changes back to file
     var csv = csvsync.stringify(allnotes);
-    fs.writeFileSync('notedb.csv', csv);
+    fs.writeFileSync(path.join(__dirname, 'notedb.csv'), csv);
 
     // refresh notes on page
     shownotes();
@@ -56,7 +58,7 @@ function delnote(id) {
 // takes in notes from database and sends them to unordered list to be displayed
 function shownotes() {
     // process csv file data
-    var rawdata = fs.readFileSync('notedb.csv');
+    let rawdata = fs.readFileSync(path.join(__dirname, 'notedb.csv'));
     var allnotes = csvsync.parse(rawdata);
 
     // set parsed data, innitialize string

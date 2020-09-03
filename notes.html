@@ -17,18 +17,14 @@
 <div class="row" id="heightone">
     <div class="col" id="tl">
         <a href="index.html">
-            <img src="icon.png" width="18%" class="logo"></a>
+            <img src="icon.png" width="63px" class="logo"></a>
 
     </div>
     <div class="col" id="openapp">
         
     </div>
     <div class="col" id="tr">
-        <div class="burgercontainer">
-            <div class="burgericon"></div>
-            <div class="burgericon"></div>
-            <div class="burgericon"></div>
-        </div>
+
     </div>
 </div>
 
@@ -48,7 +44,7 @@
                     ''
                     console.log("Adding: " + ele.value)
                     addnote(ele.value);
-                    var form = document.getElementById("note-input");
+                    document.getElementById("note-input").value = "";
                 }
             }
         </script>

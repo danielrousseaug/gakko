@@ -38,6 +38,7 @@ ul {
     padding: 0;
   }
 
+
 /* row and column css */
 .row {
     display: table;
@@ -51,8 +52,22 @@ ul {
     background-color: #FFF; 
     border-style: solid;
     border-width: 0.5px;
+    height: 100%;
+    width:100%;
 
 }
+.listrow {
+    display: table;
+    width: 100%; 
+    width: 300px;  
+    table-layout: fixed;
+    border-spacing: 0px;
+}
+.listcol {
+    display: table-cell;
+    padding: 25px;
+}
+
 
 /* row and column modifiers */
 #tl {
@@ -114,6 +129,17 @@ ul {
 #period:hover {
     cursor: pointer;
 }
+#block {
+    border-style: solid;
+    border-width: 0.5px;
+    border-right: none;
+    border-left:none;
+    border-bottom:none;
+    padding: 0px;
+}
+#blocktime {
+    margin: 30px;
+}
 #edit {
     border-style: solid;
     border-width: 0.5px;
@@ -129,11 +155,26 @@ ul {
     cursor: pointer;
     text-decoration:underline;
 }
+#date {
+    border-style: solid;
+    border-width: 0.5px;
+    border-right: none;
+    border-left:none;
+    border-bottom:none;
+    text-align: left;
+    padding: 10px;
+    padding-left: 16px;
+
+}
+#arrow {
+    padding-left: 4px;
+    padding-right: 4px;
+}
 #heightone {
-    height: 4%
+    height: 3%
 }
 #heighttwo {
-    height: 96%
+    height: 97%
 }
 #line{
     border-style: solid;
@@ -143,7 +184,7 @@ ul {
     border-bottom:none;
 }
 .center {
-    padding-top: 85%;
+    padding-top: 70%;
     text-align: center;
     width: 100%;
     height: 100%;
@@ -157,9 +198,11 @@ ul {
 
 }
 
+
 /* elements */
 .logo {
-    padding: 10px;
+    padding: 8px;
+    padding-left:13px;
 }
 .burgercontainer{
     float: right;
@@ -181,8 +224,8 @@ ul {
     width: 0;
     position: fixed;
     z-index: 1;
-    top: 7.28%;
-    right: -2px;
+    top: 41px;
+    right: -3px;
     background-color: #FFF;
     overflow-x: hidden;
     transition: 0.5s;

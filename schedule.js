@@ -3,12 +3,13 @@ const {
 } = require("util");
 var csvsync = require('csvsync');
 const fs = require("fs");
-
+const path = require('path');
 
 // takes in notes from database and sends them to unordered list to be displayed
 function showschedule() {
     // process csv file data
-    var rawdata = fs.readFileSync('scheduledb.csv');
+    let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
+
     var periods = csvsync.parse(rawdata);
 
     //initialize empty string
@@ -16,6 +17,9 @@ function showschedule() {
 
     // iterate and format each period in schedule
     for (i = 0; i < periods.length; i++) {
+        if (i === 8) {
+            continue;
+        }
         listtostring += "<a href=\"" + periods[i][1] + "\"><li class=\"row\" id=\"period\">" + periods[i][0] + "</li></a>";
     }
 
@@ -29,7 +33,7 @@ function showschedule() {
 
 function renderedit() {
     // process csv file data
-    var rawdata = fs.readFileSync('scheduledb.csv');
+    let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
 
 
@@ -55,6 +59,9 @@ function renderedit() {
     document.getElementById("p7name").value = periods[6][0];
     document.getElementById("p7link").value = periods[6][1];
 
+    document.getElementById("accesslink").value = periods[7][1];
+
+
 }
 
 function formsubmit() {
@@ -62,7 +69,7 @@ function formsubmit() {
     var schedule = []
 
     // innitialize all slots in 2d array
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 8; i++) {
         schedule[i] = [];
     }
 
@@ -88,10 +95,12 @@ function formsubmit() {
     schedule[6][0] = document.getElementById("p7name").value;
     schedule[6][1] = document.getElementById("p7link").value;
 
+    schedule[7][1] = document.getElementById("accesslink").value;
+
     // write form into file
     console.log(schedule);
     var csv = csvsync.stringify(schedule);
-    fs.writeFileSync('scheduledb.csv', csv);
+    fs.writeFileSync(path.join(__dirname, 'scheduledb.csv'), csv);
 
     // refresh schedule on page
     showschedule();
@@ -99,7 +108,7 @@ function formsubmit() {
 
 // open and close edit menu
 function openedit() {
-    document.getElementById("editmenu").style.width = "50%";
+    document.getElementById("editmenu").style.width = "66.7%";
 }
 
 function closeedit() {
