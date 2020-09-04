@@ -18,7 +18,7 @@ npm init
 ```
 follow the prompts and then use
 ```bash
-npm install
+npm install electron --save-dev
 ```
 
 to install dependencies.
