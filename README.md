@@ -24,6 +24,7 @@ choose the default to all the prompts, then do
 npm install electron --save-dev
 ```
 to install dependencies.
+
 Then either use `npm start` to run from a commandline, or package into an application using `npm install electron-packager -g` and then `electron-packager . Gakko`
 ## Usage
 
