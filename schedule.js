@@ -98,6 +98,9 @@ function formsubmit() {
     schedule[7][0] = "Access";
     schedule[7][1] = document.getElementById("accesslink").value;
 
+    schedule[7][0] = "Lunch";
+    schedule[7][1] = "#"
+
     // write form into file
     console.log(schedule);
     var csv = csvsync.stringify(schedule);
