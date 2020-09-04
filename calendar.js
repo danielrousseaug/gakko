@@ -27,7 +27,7 @@ function updatetime() {
 
     // combine time and minutes, handle am and pm for 12 hour time
     var newHour = hour();
-    var amormpm = "am";
+    var amorpm = "am";
     if (hour() >= 13) {
         newHour = hour() - 12;
     }
@@ -49,52 +49,144 @@ function updatetime() {
     document.getElementById("month").innerHTML = newMonth;
     document.getElementById("day").innerHTML = newDayweek;
     document.getElementById("time").innerHTML = newTime;
-    console.log("updating time")
 }
 
 function rendercalendar() {
-    // get csv file with periods
+    // get csv file with periods, set dayweek using date()
     let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
-
-    // use date to get correct calendar for current day
     var dayweek = Date.prototype.getDay.bind(new Date);
-    if (dayweek() > 4) {
-        return
-    };
+
+    // set todays calendar to day on calendar.json
     var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var dayweekName = dayweekNames[dayweek()].toLowerCase();
-    todayCalendar = calendar[0][dayweekName];  
-    
+    todayCalendar = calendar[0][dayweekName];
+
+    // use date to get correct calendar for current day
+    if (dayweek() > 5) {
+        return
+    };
+
+    // implement friday
+    if (dayweek() === 5) {
+        // remove borders from last 2 blocks and line
+        document.getElementById("block4").style = "border-top: none;"
+        document.getElementById("block5").style = "border-top: none;"
+        document.getElementById("line").style = "border: none;"
+
+        // remove text from last two elements and add border to compensate
+        document.getElementById("block4").innerHTML = "";
+        document.getElementById("block5").innerHTML = "";
+        document.getElementById("block3").style = "border-bottom: 0.5px solid;"
+
+        // set time for first 3 blocks
+        document.getElementById("time1").innerHTML = todayCalendar["block1"]["time"];
+        document.getElementById("time2").innerHTML = todayCalendar["block2"]["time"];
+        document.getElementById("time3").innerHTML = todayCalendar["block3"]["time"];
+
+        // set name for first 3 blocks
+        document.getElementById("name1").innerHTML = periods[todayCalendar["block1"]["period"] - 1][0];
+        document.getElementById("name2").innerHTML = periods[todayCalendar["block2"]["period"] - 1][0];
+        document.getElementById("name3").innerHTML = periods[todayCalendar["block3"]["period"] - 1][0];
+
+        // set class links for first 3 blocks
+        document.getElementById("name1").href = periods[todayCalendar["block1"]["period"] - 1][1];
+        document.getElementById("name2").href = periods[todayCalendar["block2"]["period"] - 1][1];
+        document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
+
+        // return before loading other periods that would make app crash, render active block
+        setactiveblock();
+
+        return;
+    }
+
+
+
     // set the time for each period
     document.getElementById("time1").innerHTML = todayCalendar["block1"]["time"];
     document.getElementById("time2").innerHTML = todayCalendar["block2"]["time"];
     document.getElementById("time3").innerHTML = todayCalendar["block3"]["time"];
     document.getElementById("time4").innerHTML = todayCalendar["block4"]["time"];
     document.getElementById("time5").innerHTML = todayCalendar["block5"]["time"];
-    
+
     // set class names
-    document.getElementById("name1").innerHTML = periods[todayCalendar["block1"]["period"]-1][0];
-    document.getElementById("name2").innerHTML = periods[todayCalendar["block2"]["period"]-1][0];
-    document.getElementById("name3").innerHTML = periods[todayCalendar["block3"]["period"]-1][0];
-    document.getElementById("name4").innerHTML = periods[todayCalendar["block4"]["period"]-1][0];
-    document.getElementById("name5").innerHTML = periods[todayCalendar["block5"]["period"]-1][0];
+    document.getElementById("name1").innerHTML = periods[todayCalendar["block1"]["period"] - 1][0];
+    document.getElementById("name2").innerHTML = periods[todayCalendar["block2"]["period"] - 1][0];
+    document.getElementById("name3").innerHTML = periods[todayCalendar["block3"]["period"] - 1][0];
+    document.getElementById("name4").innerHTML = periods[todayCalendar["block4"]["period"] - 1][0];
+    document.getElementById("name5").innerHTML = periods[todayCalendar["block5"]["period"] - 1][0];
 
     // set class links
-    document.getElementById("name1").href = periods[todayCalendar["block1"]["period"]-1][1];
-    document.getElementById("name2").href = periods[todayCalendar["block2"]["period"]-1][1];
-    document.getElementById("name3").href = periods[todayCalendar["block3"]["period"]-1][1];
-    document.getElementById("name4").href = periods[todayCalendar["block4"]["period"]-1][1];
-    document.getElementById("name5").href = periods[todayCalendar["block5"]["period"]-1][1];
-    
-    
-    console.log(periods[todayCalendar["block1"]["period"]][0]);
-    
+    document.getElementById("name1").href = periods[todayCalendar["block1"]["period"] - 1][1];
+    document.getElementById("name2").href = periods[todayCalendar["block2"]["period"] - 1][1];
+    document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
+    document.getElementById("name4").href = periods[todayCalendar["block4"]["period"] - 1][1];
+    document.getElementById("name5").href = periods[todayCalendar["block5"]["period"] - 1][1];
+
+    // render active block
+    setactiveblock();
+
 
 }
-var dayweek = Date.prototype.getDay.bind(new Date);
-var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-var dayweekName = dayweekNames[dayweek()].toLowerCase();
-thing = calendar[0][dayweekName];
 
-console.log(thing["block1"]["period"]);
+function setactiveblock() {
+    // get csv file with periods, set dayweek using date()
+    let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
+    var periods = csvsync.parse(rawdata);
+
+    // get neccesary times
+    var dayweek = Date.prototype.getDay.bind(new Date);
+    var hour = Date.prototype.getHours.bind(new Date);
+    var minute = Date.prototype.getMinutes.bind(new Date);
+
+    // set todays calendar to day on calendar.json
+    var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dayweekName = dayweekNames[dayweek()].toLowerCase();
+    todayCalendar = calendar[0][dayweekName];
+
+    // Check if day is friday, set var friday to true or false accordingly
+    var friday = false;
+    if (dayweek() === 5) {
+        friday = true;
+    }
+
+
+    // set current time in minutes
+    minuteTime = ((hour() * 60) + minute());
+
+    // define recursive checkler to get the active period
+    var activeBlockGetter = function () {
+        if (minuteTime > todayCalendar["block1"]["gap1"] && minuteTime < todayCalendar["block1"]["gap2"]) {
+            return Object.keys(todayCalendar)[0];
+        }
+
+        if (minuteTime > todayCalendar["block2"]["gap1"] && minuteTime < todayCalendar["block2"]["gap2"]) {
+            return Object.keys(todayCalendar)[1];
+        }
+
+        if (minuteTime > todayCalendar["block3"]["gap1"] && minuteTime < todayCalendar["block3"]["gap2"]) {
+            return Object.keys(todayCalendar)[2];
+        }
+        if (!friday) {
+            if (minuteTime > todayCalendar["block4"]["gap1"] && minuteTime < todayCalendar["block4"]["gap2"]) {
+                return Object.keys(todayCalendar)[3];
+            }
+
+            if (minuteTime > todayCalendar["block5"]["gap1"] && minuteTime < todayCalendar["block5"]["gap2"]) {
+                return Object.keys(todayCalendar)[4];
+            }
+        }
+    };
+
+    // set active block to var
+    var activeBlock = activeBlockGetter();
+
+    if (activeBlock) {
+        document.getElementById(activeBlock).style = "background-color:#f0f0f0;"
+        
+        // handle bottom line dissapearing at third block on friday
+        if(friday && activeBlock == "block3"){
+            document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-bottom:0.5px solid;"
+        }
+    }
+}

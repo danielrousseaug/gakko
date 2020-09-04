@@ -44,51 +44,54 @@
         <img src="arrow.svg" id="arrow" width="6px">
         <span id="time"> 1:08 PM </span>
     </li>
-    <div id="block">
-        <div class="listcol" id="time1">
-            10:45-12:30< </div>
-                <div class="listcol" id="">
-                    <a id="name1">loading...</a>
-                </div>
+    <div>
+    <div class="blockborder" id="block1">
+        <div class="listcoltime" id="time1">
+            10:45-12:30</div>
+        <div class="listcol" id="">
+            <a id="name1">loading...</a>
         </div>
-        <div id="block">
-            <div class="listcol" id="time2">
-                12:30-2:00
-            </div>
-            <div class="listcol" id="">
-                <a id="name2">loading...</a>
-            </div>
+    </div>
+    </div>
+    <div class="blockborder" id="block2">
+        <div class="listcoltime" id="time2">
+            12:35-1:30
         </div>
-        <div id="block">
-            <div class="listcol" id="time3">
-                12:30-2:00
-            </div>
-            <div class="listcol" id="">
-                <a id="name3">loading...</a>
-            </div>
+        <div class="listcol" id="">
+            <a id="name2">loading...</a>
         </div>
-        <div id="block">
-            <div class="listcol" id="time4">
-                12:30-2:00
-            </div>
-            <div class="listcol" id="">
-                <a id="name4">loading...</a>
-            </div>
+    </div>
+    <div class="blockborder" id="block3">
+        <div class="listcoltime" id="time3">
+            12:30-2:00
         </div>
-        <div id="block">
-            <div class="listcol" id="time5">
-                12:30-2:00
-            </div>
-            <div class="listcol" id="">
-                <a id="name5">loading...</a>
-            </div>
+        <div class="listcol" id="">
+            <a id="name3">loading...</a>
         </div>
-        <script> updatetime(); rendercalendar();
-            setInterval(function () { updatetime() }, 1000);
-        </script>
+    </div>
+    <div class="blockborder" id="block4">
+        <div class="listcoltime" id="time4">
+            12:30-2:00
+        </div>
+        <div class="listcol" id="">
+            <a id="name4">loading...</a>
+        </div>
+    </div>
+    <div class="blockborder" id="block5">
+        <div class="listcoltime" id="time5">
+            12:30-2:00
+        </div>
+        <div class="listcol" id="">
+            <a id="name5">loading...</a>
+        </div>
+    </div>
+    <div class="row" id="line"></div>
+    <script> updatetime(); rendercalendar();
+        setInterval(function () { updatetime() }, 1000);
+        setInterval(function () { setactiveblock() }, 10000);
+    </script>
 </ul>
 <!-- <script>showschedule();</script> -->
-<div class="row" id="line"></div>
 </body>
 
 </html>

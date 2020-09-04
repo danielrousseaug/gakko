@@ -67,6 +67,20 @@ ul {
     display: table-cell;
     padding: 25px;
 }
+.listcoltime {
+    display: table-cell;
+    padding: 25px;
+    width:70px;
+    border-right:none;
+    border-width: 0.5px;
+}
+.blockborder {
+    border-style:solid;
+    border-width: 0.5px;
+    border-bottom: none;
+    border-left:none;
+    border-right:none;
+}
 
 
 /* row and column modifiers */
