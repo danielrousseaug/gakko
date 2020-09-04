@@ -5,6 +5,7 @@ Gakko is an electron application designed to help students with organizing their
 ## Getting Started
 
 I am a user: Install the latest [release](https://github.com/danielrousseaug/gakko/releases) from the releases section.
+
 I am a develeoper: Download and run the code by following the installation steps below.
 
 ## Installation
