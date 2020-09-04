@@ -6,55 +6,82 @@
     <meta charset="UTF-8">
     <title>Gakko</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="html/style.css">
+    <script type="text/javascript" src="scripts/index.js"></script>
 </head>
-<body>
-<!-- main html body -->
 
-<!-- header -->
+<body>
+    <!-- main html body -->
+
+    <!-- header -->
 
     <div class="row" id="heightone">
         <div class="col" id="tl">
             <a href="index.html">
-                <img src="icon.svg" width="63px" class="logo"></a>
-            
+                <img src="resources/icon.svg" width="63px" class="logo"></a>
+
         </div>
         <div class="col" id="openapp">
-            
+
         </div>
-        <div class="col" id="tr">
-            <!-- <div class="burgercontainer">
-                <div class="burgericon"></div>
-                <div class="burgericon"></div>
-                <div class="burgericon"></div>
-            </div> -->
+        <div class="col" id="tr" style="width:auto;">
+            <a id="burgerholder" onclick="burgertox();">
+                <img src="resources/burger.svg" width="14px" id="iconburger"></a>
+        
         </div>
     </div>
 
     <!-- three large buttons -->
     <div class="row" id="heighttwo">
         <div class="col" id="bl">
-            <a href="notes.html">
+            <a href="html/notes.html">
                 <div class="center">
-                    Notes
+                    <div class="centerin">
+                        Notes
+                    </div>
                 </div>
             </a>
         </div>
         <div class="col" id="br">
-            <a href="schedule.html">
+            <a href="html/schedule.html">
                 <div class="center">
-                    Schedule
+                    <div class="centerin">
+                        Schedule
+                    </div>
                 </div>
             </a>
         </div>
         <div class="col" id="br">
-            <a href="calendar.html">
+            <a href="html/calendar.html">
                 <div class="center">
-                   Calendar
+                    <div class="centerin">
+                        Calendar
+                    </div>
                 </div>
             </a>
         </div>
     </div>
+
+    <!-- navigation bar -->
+<div id="sidemenu" class="sidemenu">
+    <div class="row" id="edit">
+        <a href="html/notes.html">notes</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="html/schedule.html">schedule</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="html/calendar.html">calendar</a>
+    </div>
+    <div class="row" id="edit">
+        <a>about us</a>
+    </div>
+    <div class="row" id="edit">
+        <a>contact</a>
+    </div>
+    <div class="row" id="line"></div>
+</div>
+
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-let rawdata = fs.readFileSync((path.join(__dirname, 'calendar.json')));
+let rawdata = fs.readFileSync((path.join(__dirname, '..', 'databases', 'calendar.json')));
 let calendar = JSON.parse(rawdata);
 var csvsync = require('csvsync');
 
@@ -53,7 +53,7 @@ function updatetime() {
 
 function rendercalendar() {
     // get csv file with periods, set dayweek using date()
-    let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
+    let rawdata = fs.readFileSync(path.join(__dirname, '..','databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
     var dayweek = Date.prototype.getDay.bind(new Date);
 
@@ -64,8 +64,10 @@ function rendercalendar() {
 
     // use date to get correct calendar for current day
     if (dayweek() > 5) {
-        return
-    };
+        document.getElementById("date").style = "border-bottom: solid 0.5px;"
+        document.getElementById("weekenderase").innerHTML = "<div class=\"center\"><div class=\"centerin2\">It's the weekend, go do something fun 🎉</div></div>";
+        return;
+    }
 
     // implement friday
     if (dayweek() === 5) {
@@ -131,7 +133,7 @@ function rendercalendar() {
 
 function setactiveblock() {
     // get csv file with periods, set dayweek using date()
-    let rawdata = fs.readFileSync(path.join(__dirname, 'scheduledb.csv'));
+    let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
 
     // get neccesary times
@@ -183,9 +185,9 @@ function setactiveblock() {
 
     if (activeBlock) {
         document.getElementById(activeBlock).style = "background-color:#f0f0f0;"
-        
+
         // handle bottom line dissapearing at third block on friday
-        if(friday && activeBlock == "block3"){
+        if (friday && activeBlock == "block3") {
             document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-bottom:0.5px solid;"
         }
     }
