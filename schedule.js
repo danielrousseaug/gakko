@@ -69,7 +69,7 @@ function formsubmit() {
     var schedule = []
 
     // innitialize all slots in 2d array
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 9; i++) {
         schedule[i] = [];
     }
 

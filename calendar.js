@@ -73,11 +73,19 @@ function rendercalendar() {
     document.getElementById("time4").innerHTML = todayCalendar["block4"]["time"];
     document.getElementById("time5").innerHTML = todayCalendar["block5"]["time"];
     
+    // set class names
     document.getElementById("name1").innerHTML = periods[todayCalendar["block1"]["period"]-1][0];
     document.getElementById("name2").innerHTML = periods[todayCalendar["block2"]["period"]-1][0];
     document.getElementById("name3").innerHTML = periods[todayCalendar["block3"]["period"]-1][0];
     document.getElementById("name4").innerHTML = periods[todayCalendar["block4"]["period"]-1][0];
     document.getElementById("name5").innerHTML = periods[todayCalendar["block5"]["period"]-1][0];
+
+    // set class links
+    document.getElementById("name1").href = periods[todayCalendar["block1"]["period"]-1][1];
+    document.getElementById("name2").href = periods[todayCalendar["block2"]["period"]-1][1];
+    document.getElementById("name3").href = periods[todayCalendar["block3"]["period"]-1][1];
+    document.getElementById("name4").href = periods[todayCalendar["block4"]["period"]-1][1];
+    document.getElementById("name5").href = periods[todayCalendar["block5"]["period"]-1][1];
     
     
     console.log(periods[todayCalendar["block1"]["period"]][0]);
