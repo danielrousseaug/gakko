@@ -2,28 +2,30 @@
 
 Gakko is an electron application designed to help students with organizing their digital learning platforms.
 
+## Getting Started
+
+I am a user: Install the latest [release](https://github.com/danielrousseaug/gakko/releases) from the releases section.
+
+I am a develeoper: Download and run the code by following the installation steps below.
+
 ## Installation
-
-Install one of the distributables 
-or 
+NOTE: Make sure you have NPM/NodeJS before installing
 use 
-
 ```bash
 git clone https://github.com/danielrousseaug/gakko
 cd gakko
 ```
-then
+wherever you want to have the program, then do
 ```bash
 npm init
 ```
-follow the prompts and then use
+choose the default to all the prompts, then do
 ```bash
-npm install
+npm install electron --save-dev
 ```
-
 to install dependencies.
-Then either use
-```npm start``` to run from a commandline, or package using any nodejs app builder.
+
+Then either use `npm start` to run from a commandline, or package into an application using `npm install electron-packager -g` and then `electron-packager . Gakko`
 ## Usage
 
 ![Menu](https://i.imgur.com/3BM8qWF.png)
