@@ -44,6 +44,7 @@ input:focus {
 ul {
     margin: 0;
     padding: 0;
+    position:absolute;
 }
 
 
@@ -108,7 +109,12 @@ ul {
     border-top: none;
     border-right: none;
 }
-
+#trburger {
+    border-bottom: none;
+    border-top: none;
+    border-right: none;
+    text-align: right;
+}
 #bl {
     border-bottom: none;
     border-left: none;
@@ -126,6 +132,7 @@ ul {
     border-left: none;
     border-bottom: none;
     padding: 10px;
+    padding-left: 15px;
 }
 
 #item-first {
@@ -157,13 +164,28 @@ ul {
     border-width: 0.5px;
     border-right: none;
     border-left: none;
-    border-bottom: none;
+    border-bottom: none;  
     padding: 25px;
 }
 
-#period:hover {
-    cursor: pointer;
+#notetext {
+    border-style: solid;
+    border-width: 0.5px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;  
+    padding: 20px;
+    padding-left:25px;
 }
+#downarrow {
+    border-width: 0.5px;
+    padding-bottom: 2px;
+}
+#downarrow:hover {
+    cursor: pointer;;
+}
+
 
 #block {
     border-style: solid;
@@ -204,16 +226,28 @@ ul {
     text-align: left;
     padding: 10px;
     padding-left: 16px;
+}
 
+#changeday{
+    float: right;
+    padding-right: 32px;
 }
 
 #arrow {
     padding-left: 4px;
     padding-right: 4px;
 }
-
+#yesterdayarrow {
+    padding:0px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+#tomorrowarrow {
+    padding: 0px;
+}
 #heightone {
-    height: 3%
+    height: 3%;
+    z-index: 2;
 }
 
 #heighttwo {
@@ -257,6 +291,40 @@ ul {
 
 
 /* elements */
+#textright{
+    padding-left: 50%;
+}
+#enclosingbox{
+    height:100%;
+    width: 100%;
+    overflow:hidden;
+}
+#notebox{
+    bottom:0;
+    height:100%;
+    width: 100%;
+    resize: none;
+    float:center;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0.5px black solid;
+    border-left:none;
+    border-right:none;
+}
+
+#notesclose:hover{
+    cursor: pointer;
+    text-decoration: none;
+    
+}
+textarea {
+    padding: 15px;
+
+}
+textarea:focus{
+    outline:none;
+
+}
+
 .logo {
     padding: 8px;
     padding-left: 13px;
@@ -264,7 +332,10 @@ ul {
 #iconburger {
     padding: 12px;
     padding-right: 20px;
-    float: right;
+    align-self: right;
+}
+#iconburger:hover {
+    cursor: pointer;
 }
 
 
@@ -274,6 +345,8 @@ ul {
 }
 
 .burgericon {
+    align-content: right;
+    float: right;
     width: 20px;
     height: 4px;
     background-color: black;
@@ -353,4 +426,19 @@ ul {
     .sidenav a {
         font-size: 18px;
     }
+}
+
+.horizontalnav {
+    height: 0;
+    width: 100%;
+    z-index: 1;
+    top: -100px;
+    right: -3px;
+    background-color: #FFF;
+    overflow-y: hidden;
+    transition: 0.5s;
+    padding-top: 0;
+    border-style: solid;
+    border-width: 0.5px;
+    border:none;
 }

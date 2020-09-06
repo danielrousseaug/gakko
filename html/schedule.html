@@ -14,7 +14,6 @@
 
 
 <!-- header -->
-
 <div class="row" id="heightone">
     <div class="col" id="tl">
         <a href="../index.html">
@@ -22,13 +21,25 @@
 
     </div>
     <div class="col" id="openapp">
-        
+
     </div>
     <div class="col" id="tr">
-
     </div>
 </div>
 
+<!-- note panel -->
+<div id="notemenu" class="horizontalnav">
+
+    <a id="notesclose" onclick="closenotes()">
+        <div id="notetext">
+            <img src="../resources/close.svg" width="9px">&ensp;&ensp;<span id="classnamenotes">Calculus Notes</span>
+        </div>
+    </a>
+
+    <div id="enclosingbox" align="center">
+        <textarea id="notebox" onkeyup="updatenotes()">Default here!</textarea>
+    </div>
+</div>
 
 <!-- two large buttons -->
 <ul id="schedule-ul">
@@ -89,8 +100,10 @@
         <input type="text" id="accesslink" name="lname" value=""><br>
     </div>
     <div class="row" id="line"></div>
+
 </div>
 <script>renderedit()</script>
+
 
 
 </html>

@@ -8,8 +8,7 @@ const path = require('path');
 // takes in notes from database and sends them to unordered list to be displayed
 function showschedule() {
     // process csv file data
-    let rawdata = fs.readFileSync(path.join(__dirname,'..', 'databases', 'scheduledb.csv'));
-
+    let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
 
     //initialize empty string
@@ -20,11 +19,13 @@ function showschedule() {
         if (i === 8) {
             continue;
         }
-        listtostring += "<a href=\"" + periods[i][1] + "\"><li class=\"row\" id=\"period\">" + periods[i][0] + "</li></a>";
+        img = "<img onclick=\"opennotes(" + i + ")\" width=\"9px\" id=\"downarrow\" src=\"../resources/downarrow.svg\"> "
+        listtostring += "<div class=\"row\" id=\"period\">" + img + "&ensp;&ensp;" + "<a href=\"" + periods[i][1] + "\">" + periods[i][0] + "</div></a>";
     }
 
     // add edit feature
-    listtostring += "<li class=\"row\" id=\"edit\" onclick=\"openedit()\"> Edit</li>"
+
+    listtostring += "<li class=\"row\" id=\"edit\" onclick=\"openedit()\"> Edit</li><div class=\"row\" id=\"line\"></div>"
 
     // display in page
     document.getElementById("schedule-ul").innerHTML = listtostring;
@@ -33,7 +34,7 @@ function showschedule() {
 
 function renderedit() {
     // process csv file data
-    let rawdata = fs.readFileSync(path.join(__dirname, '..','databases', 'scheduledb.csv'));
+    let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
 
 
@@ -104,7 +105,7 @@ function formsubmit() {
     // write form into file
     console.log(schedule);
     var csv = csvsync.stringify(schedule);
-    fs.writeFileSync(path.join(__dirname,'..', 'databases','scheduledb.csv'), csv);
+    fs.writeFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'), csv);
 
     // refresh schedule on page
     showschedule();
@@ -117,4 +118,70 @@ function openedit() {
 
 function closeedit() {
     document.getElementById("editmenu").style.width = "0";
+}
+
+// open and close notes panel
+function opennotes(id) {
+    // get period db set up
+    let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
+    var periods = csvsync.parse(rawdata);
+
+    // get note db set up
+    let rawjson = fs.readFileSync((path.join(__dirname, '..', 'databases', 'classnotes.json')));
+    let classnotes = JSON.parse(rawjson);
+
+    // open up bar and set border top to black
+    document.getElementById("notemenu").style.height = "100%";
+    document.getElementById("notemenu").style.borderTop = "0.5px solid";
+
+    // set title to class + notes
+    document.getElementById("classnamenotes").innerHTML = periods[id][0] + " Notes";
+
+    // check if note file is empty
+    if (!classnotes) {
+        classnotes = [{}];
+    }
+
+    // check if note exists in classnotes
+    if (!classnotes[0][id]) {
+        classnotes[0][id] = "Add class notes here"
+        console.log(classnotes);
+        let data = JSON.stringify(classnotes);
+        fs.writeFileSync(path.join(__dirname, '..', 'databases', 'classnotes.json'), data);
+    }
+
+    // make notes whatever is in json document
+    document.getElementById("notebox").value = classnotes[0][id];
+
+    // set the current id to current in json file
+    classnotes[0]["current"] = id;
+
+    let data = JSON.stringify(classnotes);
+    fs.writeFileSync(path.join(__dirname, '..', 'databases', 'classnotes.json'), data);
+}
+
+function updatenotes() {
+    // get note db set up
+    let rawjson = fs.readFileSync((path.join(__dirname, '..', 'databases', 'classnotes.json')));
+    let classnotes = JSON.parse(rawjson);
+
+    // get current working classnote
+    id = classnotes[0]["current"];
+
+    // set classnote to text being typed
+    classnotes[0][id] = document.getElementById("notebox").value;
+
+    // update the json document
+    let data = JSON.stringify(classnotes);
+    fs.writeFileSync(path.join(__dirname, '..', 'databases', 'classnotes.json'), data);
+
+}
+
+function closenotes() {
+
+    document.getElementById("notemenu").style.height = "0";
+
+    setTimeout(function () {
+        document.getElementById("notemenu").style.borderTop = "0";
+    }, 500);
 }

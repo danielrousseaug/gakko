@@ -3,7 +3,8 @@ const path = require('path');
 let rawdata = fs.readFileSync((path.join(__dirname, '..', 'databases', 'calendar.json')));
 let calendar = JSON.parse(rawdata);
 var csvsync = require('csvsync');
-
+var deletedHTML;
+var currentday = 0;
 
 function updatetime() {
     // get defaults for all time
@@ -51,26 +52,45 @@ function updatetime() {
     document.getElementById("time").innerHTML = newTime;
 }
 
-function rendercalendar() {
+function rendercalendar(forceday) {
     // get csv file with periods, set dayweek using date()
-    let rawdata = fs.readFileSync(path.join(__dirname, '..','databases', 'scheduledb.csv'));
+    let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
     var dayweek = Date.prototype.getDay.bind(new Date);
 
+    var daymodifier = 0;
+    if (forceday) {
+        currentday += forceday;
+        daymodifier += currentday;
+        document.getElementById("weekenderase").innerHTML = deletedHTML;
+    }
+
+    console.log(dayweek() + daymodifier);
+
+    // make daymodifier loop
+    while (dayweek() + daymodifier > 6) {
+        daymodifier -= 7;
+    }
+    while (dayweek() + daymodifier < 0) {
+        daymodifier += 7;
+    }
+    console.log(dayweek() + daymodifier)
+
     // set todays calendar to day on calendar.json
-    var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var dayweekName = dayweekNames[dayweek()].toLowerCase();
+    var dayweekNames = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dayweekName = dayweekNames[dayweek() + daymodifier].toLowerCase();
     todayCalendar = calendar[0][dayweekName];
+    console.log(dayweekName)
 
     // use date to get correct calendar for current day
-    if (dayweek() > 5) {
+    if (dayweek() + daymodifier == 6 || dayweek() + daymodifier == 0 ) {
         document.getElementById("date").style = "border-bottom: solid 0.5px;"
         document.getElementById("weekenderase").innerHTML = "<div class=\"center\"><div class=\"centerin2\">It's the weekend, go do something fun 🎉</div></div>";
         return;
     }
 
     // implement friday
-    if (dayweek() === 5) {
+    if (dayweek() + daymodifier === 5) {
         // remove borders from last 2 blocks and line
         document.getElementById("block4").style = "border-top: none;"
         document.getElementById("block5").style = "border-top: none;"
@@ -97,8 +117,10 @@ function rendercalendar() {
         document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
 
         // return before loading other periods that would make app crash, render active block
+        if (forceday) {
+            return
+        }
         setactiveblock();
-
         return;
     }
 
@@ -191,4 +213,8 @@ function setactiveblock() {
             document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-bottom:0.5px solid;"
         }
     }
+}
+
+function savedeleted() {
+    deletedHTML = document.getElementById("weekenderase").innerHTML;
 }

@@ -34,12 +34,12 @@
     <div class="col" id="mid">
         <div>
             New Note:
-            <input type="text" onkeydown="search(this);" id="note-input" name="fname" placeholder="Pack my groceries..."
+            <input type="text" onkeydown="add(this);" id="note-input" name="fname" placeholder="Pack my groceries..."
                 width="50%">
         </div>
         <!-- when enter key is clicked, call addnote function-->
         <script>
-            function search(ele) {
+            function add(ele) {
                 if (event.keyCode == 13) {
                     ''
                     console.log("Adding: " + ele.value)
@@ -50,11 +50,15 @@
         </script>
     </div>
 </div>
-<ul id="note-ul">
+<ul >
+    <span id="note-ul"></span>
     <!-- js will put notes here -->
+    <div class="row" id="line"></div>
+
 </ul>
 <script>shownotes();</script>
 <div class="row" id="line"></div>
+
 </body>
 
 </html>

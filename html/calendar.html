@@ -43,10 +43,23 @@
         <span id="day"> Wednesday </span>
         <img src="../resources/arrow.svg" id="arrow" width="6px">
         <span id="time"> 1:08 PM </span>
+        <span id="changeday">
+            <a href="#" onclick="rendercalendar(-1);"> <img src="../resources/arrow.svg" id="yesterdayarrow" width="6px">
+                <img src="../resources/arrow.svg" id="yesterdayarrow" width="6px">
+                Yesterday</a>
+            &ensp;
+            <a href="#" onclick="rendercalendar(1);">
+                Tomorrow
+                <img src="../resources/arrow.svg" id="tomorrowarrow" width="6px">
+                <img src="../resources/arrow.svg" id="tomorrowarrow" width="6px">
+            </a>
+        </span>
+        </span>
     </li>
+
     <div id="weekenderase">
         <div>
-            <div class="blockborder" id="block1">
+            <div class="blockborder" id="block1" style="border-top: none;">
                 <div class="listcoltime" id="time1">
                     10:45-12:30</div>
                 <div class="listcol" id="">
@@ -88,7 +101,7 @@
         </div>
         <div class="row" id="line"></div>
     </div>
-    <script> updatetime(); rendercalendar();
+    <script>savedeleted(); updatetime(); rendercalendar();
         setInterval(function () { updatetime() }, 1000);
         setInterval(function () { setactiveblock() }, 10000);
     </script>

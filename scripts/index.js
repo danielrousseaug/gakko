@@ -127,7 +127,6 @@ function burgertox() {
 }
 
 function xtoburger() {
-    console.log("working 2");
     document.getElementById("iconburger").src = "resources/burger.svg"
     document.getElementById("burgerholder").setAttribute( "onClick", "burgertox();" );
 
