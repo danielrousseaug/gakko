@@ -58,7 +58,7 @@ function rendercalendar(forceday) {
     var periods = csvsync.parse(rawdata);
     var dayweek = Date.prototype.getDay.bind(new Date);
 
-    
+
     var daymodifier = 0;
     if (forceday) {
         currentday += forceday;
@@ -116,7 +116,7 @@ function rendercalendar(forceday) {
         document.getElementById("name1").href = periods[todayCalendar["block1"]["period"] - 1][1];
         document.getElementById("name2").href = periods[todayCalendar["block2"]["period"] - 1][1];
         document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
-        
+
         // blank
         document.getElementById("name1").target = "_blank"
         document.getElementById("name2").target = "_blank"
@@ -166,6 +166,11 @@ function rendercalendar(forceday) {
 }
 
 function setactiveblock() {
+    // if its a timeskip dont run
+    if (!currentday == 0) {
+        return;
+    }
+
     // get csv file with periods, set dayweek using date()
     let rawdata = fs.readFileSync(path.join(__dirname, '..', 'databases', 'scheduledb.csv'));
     var periods = csvsync.parse(rawdata);
@@ -217,14 +222,35 @@ function setactiveblock() {
     // set active block to var
     var activeBlock = activeBlockGetter();
 
+
+    // make active block gray
     if (activeBlock) {
-        document.getElementById(activeBlock).style = "background-color:#f0f0f0;"
+        document.getElementById(activeBlock).style = "background-color:#f0f0f0;";
 
         // handle bottom line dissapearing at third block on friday
         if (friday && activeBlock == "block3") {
-            document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-bottom:0.5px solid;"
+            document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-bottom:0.5px solid;";
         }
+
+        // handle top border for first block
+        if (activeBlock == "block1") {
+            document.getElementById(activeBlock).style = "background-color:#f0f0f0; border-top: none;";
+        }
+
+
+        // loop through all periods to make sure none stay grayed out
+        for (var i = 0; i > Object.keys(todayCalendar).length; i++) {
+
+            // if its the active block, dont remove gray
+            if (Object.keys(todayCalendar)[i] == activeBlock) {
+                continue;
+            }
+            // otherwise clear gray
+            document.getElementById(Object.keys(todayCalendar)[i]).style = "background-color:#f0f0f0; border-bottom:0.5px solid;";
+        }
+
     }
+    console.log(Object.keys(todayCalendar).length);
 }
 
 function savedeleted() {
