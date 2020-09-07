@@ -3,12 +3,17 @@ var pagepath = window.location.pathname;
 var page = pagepath.split("/").pop();
 
 // default path
-var filepath = "../resources/close.svg"
+var filepathburger = "../resources/burger.svg"
+var filepathclose = "../resources/close.svg"
 
 // if current page is index adjust file path
 if (page == "index.html") {
-    filepath = "resources/close.svg"
+    filepathclose = "resources/close.svg"
 }
+if (page == "index.html") {
+    filepathburger = "resources/burger.svg"
+}
+
 
 // open and close edit menu
 function openmenu() {
@@ -28,14 +33,14 @@ function closemenu() {
 
 function burgertox() {
 
-    document.getElementById("iconburger").src = filepath;
+    document.getElementById("iconburger").src = filepathclose;
     document.getElementById("burgerholder").setAttribute("onClick", "xtoburger();");
 
     openmenu();
 }
 
 function xtoburger() {
-    document.getElementById("iconburger").src = filepath;
+    document.getElementById("iconburger").src = filepathburger;
     document.getElementById("burgerholder").setAttribute("onClick", "burgertox();");
 
     closemenu();

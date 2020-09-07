@@ -60,6 +60,13 @@ function shownotes() {
     // process csv file data
     let rawdata = fs.readFileSync(path.join(__dirname,'..','databases', 'notedb.csv'));
     var allnotes = csvsync.parse(rawdata);
+    console.log(allnotes);
+    console.log()
+    if(allnotes[0] == "")
+    {
+        document.getElementById("note-ul").innerHTML = "";
+        return;
+    }
 
     // set parsed data, innitialize string
     var listtostring = "";

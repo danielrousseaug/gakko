@@ -58,6 +58,7 @@ function rendercalendar(forceday) {
     var periods = csvsync.parse(rawdata);
     var dayweek = Date.prototype.getDay.bind(new Date);
 
+    
     var daymodifier = 0;
     if (forceday) {
         currentday += forceday;
@@ -88,7 +89,7 @@ function rendercalendar(forceday) {
         document.getElementById("weekenderase").innerHTML = "<div class=\"center\"><div class=\"centerin2\">It's the weekend, go do something fun 🎉</div></div>";
         return;
     }
-
+    document.getElementById("date").style = "border-bottom: solid 0.5px;"
     // implement friday
     if (dayweek() + daymodifier === 5) {
         // remove borders from last 2 blocks and line
@@ -128,7 +129,6 @@ function rendercalendar(forceday) {
         setactiveblock();
         return;
     }
-
 
 
     // set the time for each period
