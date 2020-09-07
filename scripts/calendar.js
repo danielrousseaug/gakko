@@ -77,13 +77,13 @@ function rendercalendar(forceday) {
     console.log(dayweek() + daymodifier)
 
     // set todays calendar to day on calendar.json
-    var dayweekNames = [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var dayweekName = dayweekNames[dayweek() + daymodifier].toLowerCase();
     todayCalendar = calendar[0][dayweekName];
     console.log(dayweekName)
 
     // use date to get correct calendar for current day
-    if (dayweek() + daymodifier == 6 || dayweek() + daymodifier == 0 ) {
+    if (dayweek() + daymodifier == 6 || dayweek() + daymodifier == 0) {
         document.getElementById("date").style = "border-bottom: solid 0.5px;"
         document.getElementById("weekenderase").innerHTML = "<div class=\"center\"><div class=\"centerin2\">It's the weekend, go do something fun 🎉</div></div>";
         return;
@@ -115,6 +115,11 @@ function rendercalendar(forceday) {
         document.getElementById("name1").href = periods[todayCalendar["block1"]["period"] - 1][1];
         document.getElementById("name2").href = periods[todayCalendar["block2"]["period"] - 1][1];
         document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
+        
+        // blank
+        document.getElementById("name1").target = "_blank"
+        document.getElementById("name2").target = "_blank"
+        document.getElementById("name3").target = "_blank"
 
         // return before loading other periods that would make app crash, render active block
         if (forceday) {
@@ -146,6 +151,13 @@ function rendercalendar(forceday) {
     document.getElementById("name3").href = periods[todayCalendar["block3"]["period"] - 1][1];
     document.getElementById("name4").href = periods[todayCalendar["block4"]["period"] - 1][1];
     document.getElementById("name5").href = periods[todayCalendar["block5"]["period"] - 1][1];
+
+    // blank
+    document.getElementById("name1").target = "_blank"
+    document.getElementById("name2").target = "_blank"
+    document.getElementById("name3").target = "_blank"
+    document.getElementById("name4").target = "_blank"
+    document.getElementById("name5").target = "_blank"
 
     // render active block
     setactiveblock();

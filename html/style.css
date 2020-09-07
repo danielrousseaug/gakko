@@ -44,7 +44,7 @@ input:focus {
 ul {
     margin: 0;
     padding: 0;
-    position:absolute;
+    position: absolute;
 }
 
 
@@ -109,12 +109,14 @@ ul {
     border-top: none;
     border-right: none;
 }
+
 #trburger {
     border-bottom: none;
     border-top: none;
     border-right: none;
     text-align: right;
 }
+
 #bl {
     border-bottom: none;
     border-left: none;
@@ -164,7 +166,7 @@ ul {
     border-width: 0.5px;
     border-right: none;
     border-left: none;
-    border-bottom: none;  
+    border-bottom: none;
     padding: 25px;
 }
 
@@ -174,16 +176,19 @@ ul {
     border-top: none;
     border-right: none;
     border-left: none;
-    border-bottom: none;  
+    border-bottom: none;
     padding: 20px;
-    padding-left:25px;
+    padding-left: 25px;
 }
+
 #downarrow {
     border-width: 0.5px;
     padding-bottom: 2px;
 }
+
 #downarrow:hover {
-    cursor: pointer;;
+    cursor: pointer;
+    ;
 }
 
 
@@ -228,7 +233,7 @@ ul {
     padding-left: 16px;
 }
 
-#changeday{
+#changeday {
     float: right;
     padding-right: 32px;
 }
@@ -237,14 +242,17 @@ ul {
     padding-left: 4px;
     padding-right: 4px;
 }
+
 #yesterdayarrow {
-    padding:0px;
+    padding: 0px;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
+
 #tomorrowarrow {
     padding: 0px;
 }
+
 #heightone {
     height: 3%;
     z-index: 2;
@@ -284,44 +292,53 @@ ul {
     border-bottom: none;
     border-top: none;
     border-right: none;
-
     text-align: center;
-
+    vertical-align: middle;
+    padding-left: 13px;
 }
+
 
 
 /* elements */
-#textright{
+#textright {
     padding-left: 50%;
 }
-#enclosingbox{
-    height:100%;
+
+#enclosingbox {
+    height: 100%;
     width: 100%;
-    overflow:hidden;
-}
-#notebox{
-    bottom:0;
-    height:100%;
-    width: 100%;
-    resize: none;
-    float:center;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 0.5px black solid;
-    border-left:none;
-    border-right:none;
+    overflow: hidden;
 }
 
-#notesclose:hover{
+#pointerhover:hover {
+    cursor: pointer;
+}
+
+#notebox {
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    resize: none;
+    float: center;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 0.5px black solid;
+    border-left: none;
+    border-right: none;
+}
+
+#notesclose:hover {
     cursor: pointer;
     text-decoration: none;
-    
+
 }
+
 textarea {
     padding: 15px;
 
 }
-textarea:focus{
-    outline:none;
+
+textarea:focus {
+    outline: none;
 
 }
 
@@ -329,11 +346,17 @@ textarea:focus{
     padding: 8px;
     padding-left: 13px;
 }
+
+#magnify {
+    margin-top: 1px;
+}
+
 #iconburger {
     padding: 12px;
     padding-right: 20px;
     align-self: right;
 }
+
 #iconburger:hover {
     cursor: pointer;
 }
@@ -355,6 +378,47 @@ textarea:focus{
 
 #note-input {
     border: none;
+}
+
+#searchbar {
+    border: none;
+    padding-bottom: 1px;
+    width: 80%;
+}
+
+#searchbar::placeholder {
+    color: black;
+}
+
+#searchclose {
+    visibility: hidden;
+    padding-right: 5px;
+}
+
+#searchclose:hover {
+    cursor: pointer;
+}
+
+#applist {
+    padding: 15px;
+    list-style-type: none;
+    font-size:12px;
+}
+#applist li {
+    margin-top:4px;
+    margin-bottom:4px;
+}
+
+
+#filler {
+    background-color: #FFF;
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+}
+.seperator{
+    margin-top:15px;
+    text-decoration: underline;
 }
 
 /* edit menu */
@@ -440,5 +504,32 @@ textarea:focus{
     padding-top: 0;
     border-style: solid;
     border-width: 0.5px;
-    border:none;
+    border: none;
+}
+
+
+.appmenu {
+    top: 41px;
+    height: 0;
+    position: fixed;
+    z-index: 1;
+    overflow-x: hidden;
+    transition: 0.35s;
+    border-style: solid;
+    border-width: 0.5px;
+    overflow: hidden;
+    /* left:33.3333%;
+    right:33.24%; */
+    margin-right: auto;
+    margin-left: auto;
+    border-top: none;
+
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    /* give it dimensions */
+    left: 2px;
+    width: 33.2%;
+
 }

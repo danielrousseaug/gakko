@@ -20,7 +20,7 @@ function showschedule() {
             continue;
         }
         img = "<img onclick=\"opennotes(" + i + ")\" width=\"9px\" id=\"downarrow\" src=\"../resources/downarrow.svg\"> "
-        listtostring += "<div class=\"row\" id=\"period\">" + img + "&ensp;&ensp;" + "<a href=\"" + periods[i][1] + "\">" + periods[i][0] + "</div></a>";
+        listtostring += "<div class=\"row\" id=\"period\">" + img + "&ensp;&ensp;" + "<a target=\"_blank\" href=\"" + periods[i][1] + "\">" + periods[i][0] + "</div></a>";
     }
 
     // add edit feature

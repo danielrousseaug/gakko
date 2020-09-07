@@ -1,134 +1,119 @@
-const {
-    isUndefined
-} = require("util");
-var csvsync = require('csvsync');
-const fs = require("fs");
-const path = require('path');
+// get page name
+var pagepath = window.location.pathname;
+var page = pagepath.split("/").pop();
 
-// takes in notes from database and sends them to unordered list to be displayed
-function showschedule() {
-    // process csv file data
-    let rawdata = fs.readFileSync(path.join(__dirname, '..','databases', 'scheduledb.csv'));
+// default path
+var filepath = "../resources/close.svg"
 
-    var periods = csvsync.parse(rawdata);
-
-    //initialize empty string
-    var listtostring = "";
-
-    // iterate and format each period in schedule
-    for (i = 0; i < periods.length; i++) {
-        if (i === 8) {
-            continue;
-        }
-        listtostring += "<a href=\"" + periods[i][1] + "\"><li class=\"row\" id=\"period\">" + periods[i][0] + "</li></a>";
-    }
-
-    // add edit feature
-    listtostring += "<li class=\"row\" id=\"edit\" onclick=\"openedit()\"> Edit</li>"
-
-    // display in page
-    document.getElementById("schedule-ul").innerHTML = listtostring;
-    // console.log(listtostring);
-}
-
-function renderedit() {
-    // process csv file data
-    let rawdata = fs.readFileSync(path.join(__dirname,'..', 'databases', 'scheduledb.csv'));
-    var periods = csvsync.parse(rawdata);
-
-
-    // load information by period
-    document.getElementById("p1name").value = periods[0][0];
-    document.getElementById("p1link").value = periods[0][1];
-
-    document.getElementById("p2name").value = periods[1][0];
-    document.getElementById("p2link").value = periods[1][1];
-
-    document.getElementById("p3name").value = periods[2][0];
-    document.getElementById("p3link").value = periods[2][1];
-
-    document.getElementById("p4name").value = periods[3][0];
-    document.getElementById("p4link").value = periods[3][1];
-
-    document.getElementById("p5name").value = periods[4][0];
-    document.getElementById("p5link").value = periods[4][1];
-
-    document.getElementById("p6name").value = periods[5][0];
-    document.getElementById("p6link").value = periods[5][1];
-
-    document.getElementById("p7name").value = periods[6][0];
-    document.getElementById("p7link").value = periods[6][1];
-
-    document.getElementById("accesslink").value = periods[7][1];
-
-
-}
-
-function formsubmit() {
-    // innitialize array that will contain form data
-    var schedule = []
-
-    // innitialize all slots in 2d array
-    for (var i = 0; i < 9; i++) {
-        schedule[i] = [];
-    }
-
-    // add each period title and link to array
-    schedule[0][0] = document.getElementById("p1name").value;
-    schedule[0][1] = document.getElementById("p1link").value;
-
-    schedule[1][1] = document.getElementById("p2link").value;
-    schedule[1][0] = document.getElementById("p2name").value;
-
-    schedule[2][0] = document.getElementById("p3name").value;
-    schedule[2][1] = document.getElementById("p3link").value;
-
-    schedule[3][0] = document.getElementById("p4name").value;
-    schedule[3][1] = document.getElementById("p4link").value;
-
-    schedule[4][0] = document.getElementById("p5name").value;
-    schedule[4][1] = document.getElementById("p5link").value;
-
-    schedule[5][0] = document.getElementById("p6name").value;
-    schedule[5][1] = document.getElementById("p6link").value;
-
-    schedule[6][0] = document.getElementById("p7name").value;
-    schedule[6][1] = document.getElementById("p7link").value;
-
-    schedule[7][0] = "Access";
-    schedule[7][1] = document.getElementById("accesslink").value;
-
-    schedule[8][0] = "Lunch";
-    schedule[8][1] = "#"
-
-    // write form into file
-    console.log(schedule);
-    var csv = csvsync.stringify(schedule);
-    fs.writeFileSync(path.join(__dirname, '..','databases', 'scheduledb.csv'), csv);
-
-    // refresh schedule on page
-    showschedule();
+// if current page is index adjust file path
+if (page == "index.html") {
+    filepath = "resources/close.svg"
 }
 
 // open and close edit menu
-function openedit() {
+function openmenu() {
     document.getElementById("sidemenu").style.width = "33.33%";
+    if (page == "index.html") {
+        setTimeout(function () {
+            document.getElementById("sidemenu").style.borderLeft = "none";
+        }, 350);
+    }
+
 }
 
-function closeedit() {
+function closemenu() {
+    document.getElementById("sidemenu").style.borderLeft = "0.5px solid";
     document.getElementById("sidemenu").style.width = "0";
 }
 
 function burgertox() {
-    document.getElementById("iconburger").src = "resources/close.svg"
-    document.getElementById("burgerholder").setAttribute( "onClick", "xtoburger();" );
-    
-    openedit();
+
+    document.getElementById("iconburger").src = filepath;
+    document.getElementById("burgerholder").setAttribute("onClick", "xtoburger();");
+
+    openmenu();
 }
 
 function xtoburger() {
-    document.getElementById("iconburger").src = "resources/burger.svg"
-    document.getElementById("burgerholder").setAttribute( "onClick", "burgertox();" );
+    document.getElementById("iconburger").src = filepath;
+    document.getElementById("burgerholder").setAttribute("onClick", "burgertox();");
 
-    closeedit();
+    closemenu();
+}
+
+// call on magnifying glass to focus on search bar
+function getfocus() {
+    document.getElementById("searchbar").focus();
+}
+
+// open search bar applications
+function opensearchapps() {
+    document.getElementById("searchmenu").style.height = "100%";
+    document.getElementById("searchclose").style.visibility = "visible";
+}
+
+// close search bar applications
+function closesearchapps() {
+    document.getElementById("searchmenu").style.height = 0;
+    setTimeout(function () {
+        document.getElementById("searchclose").style.visibility = "hidden";
+    }, 350)
+}
+
+// clear search bar
+function clearsearch() {
+    // clear it
+    document.getElementById("searchbar").value = "";
+
+    // reset bar
+    closesearchapps("");
+    setTimeout(function () {
+        searchkey("");
+    }, 350)
+}
+
+// filter everytime key is pressed
+function searchkey() {
+    var input, filter, ul, li, a, i, txtValue;
+    var words = ["innit"]
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("applist");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            words.push(li[i].id);
+        } else {
+
+            li[i].style.display = "none";
+        }
+    }
+    if (!words.includes("memmisc")) {
+        document.getElementById("secmisc").style.display = "none";
+    } else {
+        document.getElementById("secmisc").style.display = "";
+    }
+    if (!words.includes("memgeneral")) {
+        document.getElementById("secgeneral").style.display = "none";
+    } else {
+        document.getElementById("secgeneral").style.display = "";
+    }
+    if (!words.includes("memresources")) {
+        document.getElementById("secresources").style.display = "none";
+    } else {
+        document.getElementById("secresources").style.display = "";
+    }
+    if (!words.includes("memgoogle")) {
+        document.getElementById("secgoogle").style.display = "none";
+    } else {
+        document.getElementById("secgoogle").style.display = "";
+    }
+    if (!words.includes("memmath")) {
+        document.getElementById("secmath").style.display = "none";
+    } else {
+        document.getElementById("secmath").style.display = "";
+    }
 }

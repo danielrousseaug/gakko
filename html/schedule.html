@@ -8,24 +8,41 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="../scripts/schedule.js"></script>
+    <script type="text/javascript" src="../scripts/index.js"></script>
 </head>
 
 <!-- main html body -->
 
 
-<!-- header -->
+<!-- start of header -->
+
 <div class="row" id="heightone">
     <div class="col" id="tl">
         <a href="../index.html">
             <img src="../resources/icon.svg" width="63px" class="logo"></a>
 
     </div>
+
+
     <div class="col" id="openapp">
+        <div id="openappinner">
+            <span id="pointerhover" onclick="getfocus();"><img src="../resources/magnify.svg" width=14px
+                    id="magnify"></span>
+            <span><input onfocus="opensearchapps();" onfocusout="clearsearch();" onkeyup="searchkey();"
+                    placeholder="SEARCH" id="searchbar" width="50%"></span>
+            <a onclick="closesearchapps();">
+                <img id="searchclose" src="../resources/close.svg" width="14px"></a>
+        </div>
+    </div>
+
+    <div class="col" id="trburger">
+        <a id="burgerholder" onclick="burgertox();">
+            <img src="../resources/burger.svg" width="14px" id="iconburger"></a>
 
     </div>
-    <div class="col" id="tr">
-    </div>
 </div>
+
+<!-- end of header -->
 
 <!-- note panel -->
 <div id="notemenu" class="horizontalnav">
@@ -104,6 +121,64 @@
 </div>
 <script>renderedit()</script>
 
+<!-- start of general bar -->
+<!-- navigation bar -->
+<div id="sidemenu" class="sidemenu">
+    <div class="row" id="edit">
+        <a href="../html/notes.html">notes</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="../html/schedule.html">schedule</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="../html/calendar.html">calendar</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="../html/about.html">about us</a>
+    </div>
+    <div class="row" id="edit">
+        <a href="../html/contact.html">contact</a>
+    </div>
+    <div class="row" id="line"></div>
+</div>
 
+<!-- search panel -->
+<div id="searchmenu" class="appmenu">
+    <ul id="applist">
+        <span id="secgeneral" class="seperator"><br>General</span>
+        <li id="memgeneral"><a target="_blank"
+                href="https://docs.google.com/document/d/1kX_4CtrAimXKMOX4mu7jZXD-vliELBxe2xcZQEXIhrs/edit">G12 Welp
+                Page</a></li>
+        <li id="memgeneral"><a target="_blank" href="https://classroom.powerschool.com/">Unified Classroom</a></li>
+        <li id="memgeneral"><a target="_blank" href="https://asfm.powerschool.com/public/">Powerschool Grades</a>
+        </li>
+        <li id="memgeneral"><a target="_blank" href="https://www.turnitin.com/">Turnitin</a></li>
+
+        <span id="secgoogle" class="seperator"><br>Google Suite</span>
+        <li id="memgoogle"><a target="_blank" href="https://calendar.google.com/calendar/">Calendar</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://classroom.google.com/">Classroom</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://www.google.com/gmail/">Gmail</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://www.google.com/drive/">Drive</a></li>
+
+        <span id="secmath" class="seperator"><br>Math</span>
+        <li id="memmath"><a target="_blank" href="https://www.desmos.com/calculator">Desmos</a></li>
+        <li id="memmath"><a target="_blank" href="https://www.symbolab.com/">Symbolab</a></li>
+
+        <span id="secresources" class="seperator"><br>Resources</span>
+        <li id="memresources"><a target="_blank" href="https://www.noredink.com/">Noredink</a></li>
+        <li id="memresources"><a target="_blank" href="http://doc.new/">New Google Doc</a></li>
+        <li id="memresources"><a target="_blank" href="https://slides.new/">New Google Slides</a></li>
+
+        <span class="seperator" id="secmisc"><br>Miscelaneous</span>
+        <li id="memmisc"><a target="_blank" href="https://www.asfm.edu.mx/">ASFM Webpage</a></li>
+        <li id="memmisc"><a target="_blank" href="https://www.canva.com/">Canva</a></li>
+        <li id="memmisc"><a target="_blank" href="https://hangouts.google.com/">Hangouts</a></li>
+
+    </ul>
+    <div id="filler">
+    </div>
+</div>
+
+<!-- end of general bar -->
 
 </html>
