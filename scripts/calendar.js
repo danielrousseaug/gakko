@@ -66,7 +66,6 @@ function rendercalendar(forceday) {
         document.getElementById("weekenderase").innerHTML = deletedHTML;
     }
 
-    console.log(dayweek() + daymodifier);
 
     // make daymodifier loop
     while (dayweek() + daymodifier > 6) {
@@ -75,13 +74,11 @@ function rendercalendar(forceday) {
     while (dayweek() + daymodifier < 0) {
         daymodifier += 7;
     }
-    console.log(dayweek() + daymodifier)
 
     // set todays calendar to day on calendar.json
     var dayweekNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var dayweekName = dayweekNames[dayweek() + daymodifier].toLowerCase();
     todayCalendar = calendar[0][dayweekName];
-    console.log(dayweekName)
 
     // use date to get correct calendar for current day
     if (dayweek() + daymodifier == 6 || dayweek() + daymodifier == 0) {
@@ -185,6 +182,7 @@ function setactiveblock() {
     var dayweekName = dayweekNames[dayweek()].toLowerCase();
     todayCalendar = calendar[0][dayweekName];
 
+
     // Check if day is friday, set var friday to true or false accordingly
     var friday = false;
     if (dayweek() === 5) {
@@ -195,10 +193,11 @@ function setactiveblock() {
     // set current time in minutes
     minuteTime = ((hour() * 60) + minute());
 
-    // define recursive checkler to get the active period
+    // define recursive checker to get the active period
     var activeBlockGetter = function () {
         if (minuteTime > todayCalendar["block1"]["gap1"] && minuteTime < todayCalendar["block1"]["gap2"]) {
             return Object.keys(todayCalendar)[0];
+            
         }
 
         if (minuteTime > todayCalendar["block2"]["gap1"] && minuteTime < todayCalendar["block2"]["gap2"]) {
@@ -217,6 +216,7 @@ function setactiveblock() {
                 return Object.keys(todayCalendar)[4];
             }
         }
+        
     };
 
     // set active block to var
@@ -250,7 +250,6 @@ function setactiveblock() {
         }
 
     }
-    console.log(Object.keys(todayCalendar).length);
 }
 
 function savedeleted() {

@@ -213,8 +213,14 @@ ul {
     border-bottom: none;
     text-align: left;
     padding: 15px;
-    padding-left: 30px;
+    padding-left: 25px;
 
+}
+
+#copyright{
+    padding: 15px;
+    padding-left: 25px;
+    text-transform: none;
 }
 
 #edit:hover {
@@ -430,12 +436,13 @@ textarea:focus {
     top: 41px;
     right: -3px;
     background-color: #FFF;
-    overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
     border-style: solid;
     border-width: 0.5px;
+    overflow:hidden;
 }
+
 
 .sidemenu {
     height: 100%;
@@ -532,4 +539,10 @@ textarea:focus {
     left: 2px;
     width: 33.2%;
 
+}
+
+
+#about {
+    padding-left: 20%;
+    padding-right: 20%;
 }
