@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<!-- head requirements and title -->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="../scripts/calendar.js"></script>
+    <script type="text/javascript" src="../scripts/index.js"></script>
+</head>
+
+<!-- main html body -->
+
+
+
+<!-- start of header -->
+
+<div class="row" id="heightone">
+    <div class="col" id="tl">
+        <a href="../index.html">
+            <img src="../resources/icon.svg" width="63px" class="logo"></a>
+
+    </div>
+
+
+    <div class="col" id="openapp">
+        <div id="openappinner">
+            <span id="pointerhover" onclick="getfocus();"><img src="../resources/magnify.svg" width=14px
+                    id="magnify"></span>
+            <span><input onfocus="opensearchapps();" onfocusout="clearsearch();" onkeyup="searchkey();"
+                    placeholder="SEARCH" id="searchbar" width="50%"></span>
+            <a onclick="closesearchapps();">
+                <img id="searchclose" src="../resources/close.svg" width="14px"></a>
+        </div>
+    </div>
+
+    <div class="col" id="trburger">
+        <a id="burgerholder" onclick="burgertox();">
+            <img src="../resources/burger.svg" width="14px" id="iconburger"></a>
+
+    </div>
+</div>
+<div id=line></div>
+<!-- end of header -->
+<div class="center">
+    <div class="centerin" id="about" style="text-transform: none;">
+        This application was created by Daniel Rousseau, I am currently a high school student at ASFM,
+        and created this application as a submition for my Creativity and Product Design class.
+        <br>
+        <br>
+        For any questions or issues, be sure to contact me at: danielrousseaug@gmail.com
+        <br>
+        <br> 
+        For details on the program code, check out the github repo by clicking <a href="https://github.com/danielrousseaug/gakko" target="_blank"style="text-decoration:underline;">here</a>
+    </div>
+</div>
+
+
+<!-- start of general bar -->
+<!-- navigation bar -->
+<div id="sidemenu" class="sidemenu">
+    <a href="../index.html">
+        <div class="row" id="edit">
+            home</div>
+    </a>
+    <a href="../html/notes.html">
+        <div class="row" id="edit">
+            notes</div>
+    </a>
+    <a href="../html/schedule.html">
+        <div class="row" id="edit">
+            schedule</div>
+    </a>
+    <a href="../html/calendar.html">
+        <div class="row" id="edit">
+            calendar</div>
+    </a>
+    <a href="../html/about.html">
+        <div class="row" id="edit">
+            about</div>
+    </a>
+    <div class="row" id="line"></div>
+    <div id="copyright">
+        © 2020 Gakkō</div>
+</div>
+
+<!-- search panel -->
+<div id="searchmenu" class="appmenu">
+    <ul id="applist">
+        <span id="secgeneral" class="seperator"><br>General</span>
+        <li id="memgeneral"><a target="_blank"
+                href="https://docs.google.com/document/d/1kX_4CtrAimXKMOX4mu7jZXD-vliELBxe2xcZQEXIhrs/edit">G12 Welp
+                Page</a></li>
+        <li id="memgeneral"><a target="_blank" href="https://classroom.powerschool.com/">Unified Classroom</a></li>
+        <li id="memgeneral"><a target="_blank" href="https://asfm.powerschool.com/public/">Powerschool Grades</a>
+        </li>
+        <li id="memgeneral"><a target="_blank" href="https://www.turnitin.com/">Turnitin</a></li>
+
+        <span id="secgoogle" class="seperator"><br>Google Suite</span>
+        <li id="memgoogle"><a target="_blank" href="https://calendar.google.com/calendar/">Calendar</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://classroom.google.com/">Classroom</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://www.google.com/gmail/">Gmail</a></li>
+        <li id="memgoogle"><a target="_blank" href="https://www.google.com/drive/">Drive</a></li>
+
+        <span id="secmath" class="seperator"><br>Math</span>
+        <li id="memmath"><a target="_blank" href="https://www.desmos.com/calculator">Desmos</a></li>
+        <li id="memmath"><a target="_blank" href="https://www.symbolab.com/">Symbolab</a></li>
+
+        <span id="secresources" class="seperator"><br>Resources</span>
+        <li id="memresources"><a target="_blank" href="https://www.noredink.com/">Noredink</a></li>
+        <li id="memresources"><a target="_blank" href="http://doc.new/">New Google Doc</a></li>
+        <li id="memresources"><a target="_blank" href="https://slides.new/">New Google Slides</a></li>
+
+        <span class="seperator" id="secmisc"><br>Miscelaneous</span>
+        <li id="memmisc"><a target="_blank" href="https://www.asfm.edu.mx/">ASFM Webpage</a></li>
+        <li id="memmisc"><a target="_blank" href="https://www.canva.com/">Canva</a></li>
+        <li id="memmisc"><a target="_blank" href="https://hangouts.google.com/">Hangouts</a></li>
+
+    </ul>
+    <div id="filler">
+    </div>
+</div>
+
+<!-- end of general bar -->
+
+</body>
+
+</html>
